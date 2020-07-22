@@ -36,7 +36,6 @@ struct SnapFork {
 			std::perror("child: execl (target exe)");
 			std::exit(EXIT_FAILURE);
 		}
-		free(targs); //XXX
 	}
 	virtual void runParent(SnapContext &sCtx) {
 		std::exit(0);

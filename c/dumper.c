@@ -38,7 +38,7 @@ unsigned LogLevel;
 int
 main(int argc, char **argv)
 {
-    pid_t child_pid = ~0;
+	pid_t child_pid = ~0;
 	pid_t pid;
 
 	xed_tables_init();
