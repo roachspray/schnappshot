@@ -14,5 +14,5 @@ fi
 printf "xor addr=0x%s\n" ${xoraddr}
 
 LD_LIBRARY_PATH=/home/arr/xed/kits/xed-install-base-2020-07-03-lin-x86-64/lib  \
-  ./replay ${SNAPDIR} 0x${xoraddr} ./ex_tracee JABBERJAW
+  ./replay ${SNAPDIR} 0x${xoraddr} ./ex_tracee JABBERJAW GINZU
 exit 0

@@ -10,6 +10,6 @@ printf "callq wonk addr= 0x%s\n" ${callqaddr}
 #printf "xor addr= 0x%s\n" ${xoraddr}
 
 LD_LIBRARY_PATH=/home/arr/xed/kits/xed-install-base-2020-07-03-lin-x86-64/lib  \
-  ./dumper ${SNAPDIR} 0x${callqaddr} ${CONT}cont ./ex_tracee JABBERJAW
+  ./dumper ${SNAPDIR} 0x${callqaddr} ${CONT}cont ./ex_tracee JABBERJAW PHEW
 
 exit 0

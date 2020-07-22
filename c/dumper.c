@@ -38,7 +38,7 @@ unsigned LogLevel;
 int
 main(int argc, char **argv)
 {
-	pid_t child_pid = ~0;
+    pid_t child_pid = ~0;
 	pid_t pid;
 
 	xed_tables_init();
@@ -104,7 +104,7 @@ main(int argc, char **argv)
 		(void)close(fd);
 #endif
 
-		if (execl(ex, ex, argv[5], NULL) == -1) {
+		if (execv(ex, argv+5) == -1) {
 			perror("execl");
 			return 0;
 		}

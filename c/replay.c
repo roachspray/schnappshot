@@ -87,7 +87,7 @@ main(int argc, char **argv)
 		close(fd);
 #endif
 
-		if (execl(ex, ex, argv[4], NULL) == -1) {
+		if (execv(ex, argv+4) == -1) {
 			perror("execl");
 			return 0;
 		}
