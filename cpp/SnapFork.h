@@ -17,7 +17,6 @@ struct SnapFork {
 		delete args;	// XXX (arr): we're stil leaking
 	}
 	virtual void runChild() {
-		std::cout << "rnChild\n";
 		if (ptrace(PTRACE_TRACEME, 0, 0, 0) == -1) {
 			std::perror("ptrace(TRACEME)");
 			std::exit(EXIT_FAILURE);
@@ -40,7 +39,6 @@ struct SnapFork {
 		free(targs); //XXX
 	}
 	virtual void runParent(SnapContext &sCtx) {
-		std::cout << "rnParent\n";
 		std::exit(0);
 	}
 	bool launch(SnapContext & sc) {
