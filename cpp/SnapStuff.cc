@@ -93,8 +93,8 @@ SnapContext::writeProcMaps()
 	unsigned i = 0;
 
 	assert(this->entries.size() > 0 && "writeProcMaps: entries.size == 0");
-    struct iovec *src = new struct iovec[this->entries.size()];
-    struct iovec *dst = new struct iovec[this->entries.size()];
+	struct iovec *src = new struct iovec[this->entries.size()];
+	struct iovec *dst = new struct iovec[this->entries.size()];
 
 	for (auto &mp : this->entries) {
 		src[i].iov_base = mp->me_data;

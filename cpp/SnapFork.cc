@@ -1,32 +1,32 @@
-extern "C" {                                                                    
-#include <sys/wait.h>                                                           
-#include <sys/ptrace.h>                                                         
-#include <sys/user.h>                                                           
-#include <sys/personality.h>                                                    
-#include <sys/types.h>                                                          
-#include <sys/stat.h>                                                           
-#include <unistd.h>                                                             
-}                                                                               
-                                                                                
-#include <memory>                                                               
-#include <vector>                                                               
-#include <list>                                                                 
-#include <queue>                                                                
-                                                                                
-#include <cstdio>                                                               
-#include <cstring>                                                              
-#include <ctime>                                                                
-#include <iostream>                                                             
-#include <fstream>                                                              
-#include <chrono>                                                               
-#include <random>                                                               
-#include <cassert>                                                              
-#include <sstream>                                                              
-                                                                                
-#include "SnapStuff.h"                                                          
-#include "SnapDisassem.h"                                                       
-#include "SnapUtil.h"                                                           
-#include "SnapFork.h"                        
+extern "C" {
+#include <sys/wait.h>
+#include <sys/ptrace.h>
+#include <sys/user.h>
+#include <sys/personality.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+}
+
+#include <memory>
+#include <vector>
+#include <list>
+#include <queue>
+
+#include <cstdio>
+#include <cstring>
+#include <ctime>
+#include <iostream>
+#include <fstream>
+#include <chrono>
+#include <random>
+#include <cassert>
+#include <sstream>
+
+#include "SnapStuff.h"
+#include "SnapDisassem.h"
+#include "SnapUtil.h"
+#include "SnapFork.h"
 
 void
 SnapForkDumper::runParent(SnapContext &sCtx)
@@ -103,7 +103,7 @@ SnapForkDumper::runParent(SnapContext &sCtx)
 				kill(pid, SIGKILL);
 				std::exit(0);
 			} else {
-                IPRNT("Wrote snapshot to disk and continuing child process\n");
+				IPRNT("Wrote snapshot to disk and continuing child process\n");
 			}
 
 			if (ptrace(PTRACE_SETREGS, pid, 0, &regs) == -1) {
@@ -143,7 +143,7 @@ SnapForkReplayer::runParent(SnapContext &sCtx)
 			IPRNT("!WIFSTOPPED\n");
 			break;
 		}
-            
+
 		if (ptrace(PTRACE_GETREGS, pid, 0, &regs) == -1) {
 			std::perror("ptrace(GETREGS)");
 			kill(pid, SIGKILL);

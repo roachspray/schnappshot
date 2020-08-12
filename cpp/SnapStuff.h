@@ -34,9 +34,9 @@ struct ProcMapsEntry {
 	hma_t me_to;
 	char me_flags[5];
 	hma_t me_offset;
-    unsigned me_major;
+	unsigned me_major;
 	unsigned me_minor;
-    hma_t me_inode;
+	hma_t me_inode;
 	char me_name[256];
 	char *me_data;
 
@@ -100,7 +100,7 @@ public:
 	// not sure i want this here.
 	pid_t pid;
 	std::string outputdir;
-        
+
 	SnapContext(std::string _outdir) : outputdir(_outdir), pid(0) {
 		xed_tables_init();
 
