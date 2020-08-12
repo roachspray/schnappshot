@@ -57,7 +57,7 @@ read_proc_mmap(pid_t pid)
 	FILE *pmaps_fh = NULL;
 	char pmaps_file[64], pmaps_line[256];
 	char pmem_file[64];
-   	struct maps_entry *me;
+	struct maps_entry *me;
 	int fd = 0;
 
 	LIST_INIT(&snap_me);
@@ -82,7 +82,7 @@ read_proc_mmap(pid_t pid)
 	}
 	IPRNT("Parsing /proc/%u/maps\n", pid);
 	while (fgets(pmaps_line, 256, pmaps_fh)) {
-     	me = calloc(1, sizeof(struct maps_entry));
+		me = calloc(1, sizeof(struct maps_entry));
 		sscanf(pmaps_line, "%llx-%llx %4c %llx %x:%x %lld %255s", &me->me_from,
 		  &me->me_to, me->me_flags, &me->me_offset,&me->me_major,
 		  &me->me_minor, &me->me_inode, me->me_name);
@@ -113,7 +113,7 @@ read_proc_mmap(pid_t pid)
 			me = NULL;
 			continue;
 		}
-     	LIST_INSERT_HEAD(&snap_me, me, me_entries);
+		LIST_INSERT_HEAD(&snap_me, me, me_entries);
 		num_mem_chunks++;
 	}
 	(void)close(fd);
@@ -129,12 +129,12 @@ read_proc_mmap(pid_t pid)
 void
 write_proc_mmap(pid_t pid)
 {
-    struct maps_entry *mp;                                                 
+	struct maps_entry *mp;
 	unsigned i = 0;
 
-    struct iovec *src = (struct iovec*)calloc(num_mem_chunks,
+	struct iovec *src = (struct iovec*)calloc(num_mem_chunks,
 	  sizeof(struct iovec));
-    struct iovec *dst = (struct iovec*)calloc(num_mem_chunks,
+	struct iovec *dst = (struct iovec*)calloc(num_mem_chunks,
 	  sizeof(struct iovec));
 
 	for (mp = snap_me.lh_first; mp != NULL; mp = mp->me_entries.le_next,
@@ -158,7 +158,7 @@ write_proc_mmap(pid_t pid)
 void
 write_all_disk(struct user_regs_struct *regs)
 {
-    struct maps_entry *mp;
+	struct maps_entry *mp;
 	int mfd = -1;
 
 	char *metadata_file = (char *)calloc(1, strnlen(outputdir, 64) + 32); //XXX
@@ -240,17 +240,17 @@ read_all_disk(struct user_regs_struct *regs)
 
 	memset(regs, 0, sizeof(struct user_regs_struct));
 	if (read(mfd, regs, sizeof(struct user_regs_struct))   \
-      != sizeof(struct user_regs_struct)) {
-        perror("read: unable to read register values");                       
-        (void)close(mfd);                                                       
-        return;                                                                 
+    != sizeof(struct user_regs_struct)) {
+		perror("read: unable to read register values");
+		(void)close(mfd);
+		return;
 	}
 
 	num_mem_chunks = 0;
 	if (read(mfd, &num_mem_chunks, sizeof(unsigned)) != sizeof(unsigned)) {
-        perror("read: unable to read number of chunks");                       
-        (void)close(mfd);                                                       
-        return;                                                                 
+		perror("read: unable to read number of chunks");
+		(void)close(mfd);
+		return;
 	}
 	DPRNT("Number of memory chunks saved: %u\n", num_mem_chunks);
 	for (unsigned i = 0; i < num_mem_chunks; i++) {
@@ -271,7 +271,7 @@ read_all_disk(struct user_regs_struct *regs)
 			IPRNT("bad reg name..\n");
 			exit(1);
 		}
-		read(mfd, &me->me_name,  regname_len);
+		read(mfd, &me->me_name, regname_len);
 
 		read(mfd, &me->me_from, sizeof(hma_t));
 		read(mfd, &me->me_to, sizeof(hma_t));
@@ -334,7 +334,7 @@ do_print_instr(pid_t pid, hma_t ip)
 	memset(insn, 0, isz);
 	read(fd, &insn, isz);
 
-#ifdef  __x86_64__                                                              
+#ifdef  __x86_64__
 	mmode = XED_MACHINE_MODE_LONG_64;
 	stack_addr_width = XED_ADDRESS_WIDTH_64b;
 #else
@@ -363,7 +363,7 @@ do_print_instr(pid_t pid, hma_t ip)
 		IPRNT("%s: xed_decod failed @ 0x%lx\n", ip);
 #endif
 	}
-    return;
+	return;
 }
 #endif
 
