@@ -15,9 +15,9 @@ struct maps_entry {
 	hma_t me_to;
 	char me_flags[5];
 	hma_t me_offset;
-    unsigned me_major;
+	unsigned me_major;
 	unsigned me_minor;
-    hma_t me_inode;
+	hma_t me_inode;
 	char me_name[256];
 	unsigned char *me_data;
 	LIST_ENTRY(maps_entry) me_entries;
@@ -49,14 +49,14 @@ void do_print_instr(pid_t pid, hma_t ip);
 extern unsigned LogLevel;
 
 #define DPRNT(...) do {   \
-        if (LogLevel >= 2) printf(__VA_ARGS__);  \
+	if (LogLevel >= 2) printf(__VA_ARGS__);  \
 } while (0)
 
 #define IPRNT(...) do {  \
-        if (LogLevel >= 1) printf(__VA_ARGS__);   \
+	if (LogLevel >= 1) printf(__VA_ARGS__);   \
 } while (0)
 
 #define APRNT(...) do {  \
-        if (LogLevel >= 0) printf(__VA_ARGS__);   \
+	if (LogLevel >= 0) printf(__VA_ARGS__);   \
 } while (0)
 #endif 

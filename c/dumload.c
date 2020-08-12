@@ -36,7 +36,7 @@ unsigned LogLevel;
 int
 main(int argc, char **argv)
 {
-    pid_t child_pid = ~0;
+	pid_t child_pid = ~0;
 	pid_t pid;
 
 	xed_tables_init();
@@ -86,7 +86,7 @@ main(int argc, char **argv)
 
 	child_pid = fork();
 	pid = child_pid;
-    if (child_pid == 0) {
+	if (child_pid == 0) {
 		if (ptrace(PTRACE_TRACEME, 0, 0, 0) == -1) {
 			perror("ptrace (traceme)");
 			return 1;
@@ -107,7 +107,7 @@ main(int argc, char **argv)
 			perror("execl");
 			return 0;
 		}
-    } else {
+	} else {
 		int k = -1;
 		hma_t original_val;
 		struct user_regs_struct mine;
@@ -200,7 +200,7 @@ main(int argc, char **argv)
 					return 1;
 				}
 
-				write_proc_mmap(pid);                                           
+				write_proc_mmap(pid);
 
 				if (ptrace(PTRACE_SETREGS, pid, 0, &mine) == -1) {
 					perror("ptrace(SETREGS)");

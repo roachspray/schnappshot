@@ -240,7 +240,7 @@ read_all_disk(struct user_regs_struct *regs)
 
 	memset(regs, 0, sizeof(struct user_regs_struct));
 	if (read(mfd, regs, sizeof(struct user_regs_struct))   \
-    != sizeof(struct user_regs_struct)) {
+	  != sizeof(struct user_regs_struct)) {
 		perror("read: unable to read register values");
 		(void)close(mfd);
 		return;

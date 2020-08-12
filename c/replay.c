@@ -36,7 +36,7 @@ unsigned LogLevel;
 int
 main(int argc, char **argv)
 {
-    pid_t child_pid = ~0;
+	pid_t child_pid = ~0;
 	pid_t pid;
 
 	LogLevel = 1;
@@ -70,7 +70,7 @@ main(int argc, char **argv)
 
 	child_pid = fork();
 	pid = child_pid;
-    if (child_pid == 0) {
+	if (child_pid == 0) {
 		if (ptrace(PTRACE_TRACEME, 0, 0, 0) == -1) {
 			perror("ptrace (traceme)");
 			return 1;
@@ -91,7 +91,7 @@ main(int argc, char **argv)
 			perror("execl");
 			return 0;
 		}
-    } else {
+	} else {
 
 		int k = -1;
 		struct user_regs_struct snap_regs;
@@ -112,7 +112,7 @@ main(int argc, char **argv)
 				IPRNT("!WIFSTOPPED\n");
 				break;
 			}
-            
+
 			if (ptrace(PTRACE_GETREGS, pid, 0, &regs) == -1) {
 				perror("ptrace(GETREGS)");
 				kill(pid, SIGKILL);
@@ -163,7 +163,7 @@ main(int argc, char **argv)
 					break;
 				}
 				DPRNT("P> SIGTRAP at desired break point!\n");
-				write_proc_mmap(pid);                                           
+				write_proc_mmap(pid);
 #ifdef	__x86_64__
 				DPRNT("P> Setting IP to replay addr=0x%llx\n", regs.rip);
 #else
